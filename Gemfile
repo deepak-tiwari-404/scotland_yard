@@ -44,3 +44,4 @@ group :development, :test do
   gem 'annotate', '~> 2.6.6'
 end
 
+gem 'bootstrap-sass',       '3.2.0.0'
