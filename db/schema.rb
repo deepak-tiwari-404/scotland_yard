@@ -11,7 +11,15 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150530143948) do
+ActiveRecord::Schema.define(version: 20150530190753) do
+
+  create_table "cities", force: :cascade do |t|
+    t.string   "name"
+    t.integer  "x_cordinate"
+    t.integer  "y_cordinate"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+  end
 
   create_table "games", force: :cascade do |t|
     t.integer  "number_of_detectives"
@@ -19,6 +27,23 @@ ActiveRecord::Schema.define(version: 20150530143948) do
     t.datetime "finished_at"
     t.datetime "created_at",           null: false
     t.datetime "updated_at",           null: false
+  end
+
+  create_table "moves", force: :cascade do |t|
+    t.integer  "player_id"
+    t.integer  "from_id"
+    t.integer  "to_id"
+    t.integer  "transit_mode"
+    t.datetime "created_at",   null: false
+    t.datetime "updated_at",   null: false
+  end
+
+  create_table "routes", force: :cascade do |t|
+    t.integer  "from_id"
+    t.integer  "to_id"
+    t.integer  "transit_mode"
+    t.datetime "created_at",   null: false
+    t.datetime "updated_at",   null: false
   end
 
   create_table "users", force: :cascade do |t|
