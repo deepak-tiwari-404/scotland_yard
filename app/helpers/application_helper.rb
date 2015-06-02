@@ -9,4 +9,11 @@ module ApplicationHelper
       page_title + " | " + base_title                 # String concatenation
     end
   end
+
+  def content_for_sidebar(&block)
+    @show_side_bar = true
+    content_for :sidebar do
+      capture(&block)
+    end
+  end
 end

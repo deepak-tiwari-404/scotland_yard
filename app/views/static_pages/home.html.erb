@@ -1,12 +1,17 @@
-<div class="center jumbotron">
-  <h1>Welcome to the Scotland Game</h1>
-
-  <h2>
-    This is the home page for the scotland game online application.
-  </h2>
-  <div><canvas width="1018" height="809" id="mazecanvas"></canvas></div>
-  <%= link_to "Sign up now!", signup_path, class: "btn btn-lg btn-primary" %>
+<div class="canvas-board">
+  <canvas width="1016" height="809" id="game-canvas"></canvas>
 </div>
+<%= content_for_sidebar do %>
+  <div class="center well">
+    <%= link_to "Start Game", "#", class: "btn btn-lg btn-primary" %>
+  </div>
+  <div class="center well">
+    <%= link_to "Player Details", "#", class: "btn btn-lg btn-info" %>
+  </div>
+  <div class="center well">
+    <%= link_to "Previous Moves", "#", class: "btn btn-lg btn-info" %>
+  </div>
+<% end %>
 <%= javascript_tag do %>
   $(document).ready(function(){
     GameEngine.initialize();

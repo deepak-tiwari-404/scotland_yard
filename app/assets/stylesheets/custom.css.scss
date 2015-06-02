@@ -181,3 +181,42 @@ input {
   width: auto;
   margin-left: 0;
 }
+
+#two_column_container {
+    clear: both;
+    display: table;
+    #side_column{
+      width: 31.75%;
+      max-width: 31.75%;
+      display: table-cell;
+      vertical-align: top;
+      background-color: white !important;
+    }
+    #main_column{
+      width: 68.25%;
+      max-width: 68.25%;
+      display: table-cell;
+      background-color: white;
+    }
+}
+.canvas-board{
+  max-width: 750px;
+  max-height: 550px;
+  overflow: scroll;
+}
+
+.has-above{
+  padding-top: 5px;
+}
+
+.has-above-1{
+  padding-top: 10px;
+}
+
+.has-above-2{
+  padding-top: 15px;
+}
+
+.has-above-3{
+  padding-top: 5px;
+}

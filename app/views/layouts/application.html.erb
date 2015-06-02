@@ -14,7 +14,18 @@
       <% flash.each do |message_type, message| %>
         <div class="alert alert-<%= message_type %>"><%= message %></div>
       <% end %>
-      <%= yield %>
+      <% if @show_side_bar %>
+        <div id="two_column_container" class="row-fluid">
+          <div id="main_column"  class="well clearfix bg-white" >
+            <%= yield %>
+          </div>
+          <div id="side_column" class="well clearfix bg-white">
+            <%= yield :sidebar %>
+          </div>
+        </div>
+      <% else %>
+        <%= yield %>
+      <% end %>
       <%= render 'layouts/footer' %>
     </div>
   </body>

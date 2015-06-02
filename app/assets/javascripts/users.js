@@ -3,19 +3,19 @@
 
 var UserEngine = {
   initialize: function(){
-    var canvas = document.getElementById("mazecanvas");
+    var canvas = document.getElementById("game-canvas");
     var context = canvas.getContext("2d");
-    var startX = 50;
-    var startY = 50;
-    var boardWidth = 500;
-    var boardHeight = 500;
+    var startX = 0;
+    var startY = 0;
+    var boardWidth = canvas.width;
+    var boardHeight = canvas.height;
     var blockHeight = 50;
     var blockWidth = 50;
     var streetWidth = 5;
     var streetColor = "#FFFFFF";
     function drawMazeAndRectangle() {
         makeWhite(0, 0, canvas.width, canvas.height);
-        for(var i=0; i <= boardWidth/blockWidth; i++){
+        for(var i=0; i < boardWidth/blockWidth; i++){
           drawRectangle((i+1)*blockWidth - streetWidth, startY, streetWidth, boardHeight, streetColor);
           drawRectangle(startX, (i+1)*blockHeight - streetWidth, boardWidth, streetWidth, streetColor);
         }
