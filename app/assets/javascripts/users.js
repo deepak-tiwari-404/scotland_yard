@@ -1,7 +1,7 @@
 // Place all the behaviors and hooks related to the matching controller here.
 // All this logic will automatically be available in application.js.
 
-var GameEngine = {
+var UserEngine = {
   initialize: function(){
     var canvas = document.getElementById("mazecanvas");
     var context = canvas.getContext("2d");

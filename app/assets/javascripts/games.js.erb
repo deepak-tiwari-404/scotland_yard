@@ -1,0 +1,47 @@
+// Place all the behaviors and hooks related to the matching controller here.
+// All this logic will automatically be available in application.js.
+
+var GameEngine = {
+  mapPath: "<%= asset_path('map.jpg') %>",
+  totalFlag: 5,
+  flagPath: [
+    "<%= asset_path('flag0.gif') %>",
+    "<%= asset_path('flag1.gif') %>",
+    "<%= asset_path('flag2.gif') %>",
+    "<%= asset_path('flag3.gif') %>",
+    "<%= asset_path('flag4.gif') %>"
+  ],
+  initialize: function(){
+    var cities = [[95, 52], [263, 21], [401, 26], [480, 31], [761, 42] ];
+    var canvas = document.getElementById("mazecanvas");
+    var context = canvas.getContext("2d");
+    var mapLoaded = false, flagLoaded = [];
+    var mapImg = new Image(), flagImg = [];
+
+    mapImg.src = GameEngine.mapPath;
+    mapImg.onload = function(){
+      mapLoaded = true;
+    }
+    
+    for(var i = 0; i < GameEngine.totalFlag; i++){
+      flagImg[i] = new Image();
+      flagImg[i].src = GameEngine.flagPath[i];
+      flagLoaded[i] = false;
+      (function(index){
+        flagImg[index].onload = function(){
+          flagLoaded[index] = true;
+        }
+      })(i);
+    }
+
+    setInterval(function(){
+      if(mapLoaded){
+        context.drawImage(mapImg, 0, 0);
+        for(var i = 0; i < GameEngine.totalFlag; i++){
+          if(flagLoaded[i])
+            context.drawImage(flagImg[i], cities[i][0], cities[i][1]);
+        }
+      }
+    }, 250);
+  } 
+};
