@@ -14,23 +14,27 @@
 ActiveRecord::Schema.define(version: 20150602145512) do
 
   create_table "boards", force: :cascade do |t|
-    t.integer  "width"
-    t.integer  "height"
+    t.integer  "width",      default: 800
+    t.integer  "height",     default: 600
     t.string   "name"
+    t.datetime "created_at",               null: false
+    t.datetime "updated_at",               null: false
+  end
+
+  create_table "cities", force: :cascade do |t|
+    t.string   "name",       null: false
+    t.integer  "x_loc",      null: false
+    t.integer  "y_loc",      null: false
+    t.integer  "board_id",   null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
-  create_table "cities", force: :cascade do |t|
-    t.string   "name"
-    t.integer  "x_cordinate"
-    t.integer  "y_cordinate"
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
-  end
-
   create_table "games", force: :cascade do |t|
     t.integer  "number_of_detectives"
+    t.integer  "board_id"
+    t.integer  "winner_id"
+    t.integer  "maximum_moves"
     t.datetime "started_at"
     t.datetime "finished_at"
     t.datetime "created_at",           null: false
@@ -41,14 +45,15 @@ ActiveRecord::Schema.define(version: 20150602145512) do
     t.integer  "player_id"
     t.integer  "from_id"
     t.integer  "to_id"
-    t.integer  "transit_mode"
-    t.datetime "created_at",   null: false
-    t.datetime "updated_at",   null: false
+    t.integer  "mode"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "players", force: :cascade do |t|
     t.string   "type"
     t.integer  "user_id"
+    t.integer  "game_id"
     t.integer  "score",      default: 0
     t.datetime "created_at"
     t.datetime "updated_at"
@@ -57,9 +62,9 @@ ActiveRecord::Schema.define(version: 20150602145512) do
   create_table "routes", force: :cascade do |t|
     t.integer  "from_id"
     t.integer  "to_id"
-    t.integer  "transit_mode"
-    t.datetime "created_at",   null: false
-    t.datetime "updated_at",   null: false
+    t.integer  "mode"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "users", force: :cascade do |t|

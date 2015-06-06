@@ -3,7 +3,7 @@ class CreateRoutes < ActiveRecord::Migration
     create_table :routes do |t|
       t.integer :from_id
       t.integer :to_id
-      t.integer :transit_mode
+      t.integer :mode
       t.timestamps null: false
     end
   end

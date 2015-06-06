@@ -4,6 +4,9 @@
 #
 #  id                   :integer          not null, primary key
 #  number_of_detectives :integer
+#  board_id             :integer
+#  winner_id            :integer
+#  maximum_moves        :integer
 #  started_at           :datetime
 #  finished_at          :datetime
 #  created_at           :datetime         not null
