@@ -2,7 +2,8 @@
 // All this logic will automatically be available in application.js.
 
 var UserEngine = {
-  initialize: function(){
+  initialize: function(_cities, _triangles){
+    var cities = JSON.parse(_cities), triangles = JSON.parse(_triangles);
     var canvas = document.getElementById("game-canvas");
     var context = canvas.getContext("2d");
     var startX = 0;
@@ -31,9 +32,38 @@ var UserEngine = {
       context.beginPath();
       context.rect(x, y, w, h);
       context.closePath();
-      context.fillStyle = "#555555";
+      context.fillStyle = "#ffffff";
       context.fill();
     }
-    drawMazeAndRectangle();
+
+    function drawLines(p1, p2){
+      context.beginPath();
+      context.moveTo(p1[0], p1[1]);
+      context.lineTo(p2[0], p2[1]);
+      context.stroke();
+      context.closePath();
+      context.fillStyle = "#000000";
+      context.fill();
+    }
+
+    function drawCities(cities, triangles){
+      makeWhite(0, 0, canvas.width, canvas.height);
+      for(var i=0; i < cities.length; i++){
+        context.beginPath();
+        context.arc(cities[i][0], cities[i][1], 5, 0, 2*Math.PI);
+        context.stroke();
+        context.closePath();
+        context.fillStyle = "#ff0000";
+        context.fill();
+      }
+      for(var i=0;i<triangles.length;i++){
+        var points = triangles[i];
+        drawLines(cities[points[0]], cities[points[1]]);
+        drawLines(cities[points[1]], cities[points[2]]);
+        drawLines(cities[points[2]], cities[points[0]]);
+      }
+    }
+    //drawMazeAndRectangle();
+    drawCities(cities, triangles);
   } 
 };

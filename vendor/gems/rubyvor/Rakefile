@@ -1,0 +1,26 @@
+# -*- ruby -*-
+
+require 'rubygems'
+require './lib/ruby_vor/version.rb'
+
+EXT = "ext/voronoi_interface.#{Config::CONFIG['DLEXT']}"
+
+
+desc "Compile extensions"
+task :compile => EXT
+task :test => :compile
+
+file EXT => ['ext/extconf.rb', 'ext/ruby_vor_c.c'] do
+  Dir.chdir 'ext' do
+    ruby 'extconf.rb'
+    sh 'make'
+  end    
+end
+
+desc "Prepare for github upload"
+task :github do
+  system "git ls-files | egrep -v \"\\.gitignore\" > Manifest.txt"
+  system "rake debug_gem | egrep -v \"^\\(in\" > rubyvor.gemspec"
+end
+
+task :gem => :github

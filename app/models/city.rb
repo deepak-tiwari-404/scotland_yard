@@ -14,7 +14,16 @@
 class City < ActiveRecord::Base
 	belongs_to :board
 
-	has_many :connected_cities, 
-	         :through => Route.name,
-	         :source => 
+	has_many :outlinks, :class_name => Route.name, :foreign_key => "from_id"
+	has_many :inlinks, :class_name => Route.name, :foreign_key => "to_id"
+
+	scope :connected_cities, lambda{|x| joins('join routes ON routes.from_id = cities.id OR routes.to_id = cities.id').where(:id => x.id)}
+
+  def routes
+  	Route.involving(self)
+  end
+
+  def connected_cities
+  	City.connected_cities(self)
+  end
 end

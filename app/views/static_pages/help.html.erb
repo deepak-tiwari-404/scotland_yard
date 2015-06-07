@@ -1,6 +1,20 @@
-<canvas width="600" height="600" id="game-canvas"></canvas>
+<div class="canvas-board">
+  <canvas width="1000" height="800" id="game-canvas"></canvas>
+</div>
+<%= content_for_sidebar do %>
+  <div class="center well">
+    <%= link_to "Start Game", "#", class: "btn btn-lg btn-primary" %>
+  </div>
+  <div class="center well">
+    <%= link_to "Player Details", "#", class: "btn btn-lg btn-info" %>
+  </div>
+  <div class="center well">
+    <%= link_to "Previous Moves", "#", class: "btn btn-lg btn-info" %>
+  </div>
+<% end %>
 <%= javascript_tag do %>
   $(document).ready(function(){
-    UserEngine.initialize();
+    UserEngine.initialize('<%= @vertices.to_json.html_safe %>', '<%= @triangles.to_json.html_safe %>');
   });
 <% end %>
+

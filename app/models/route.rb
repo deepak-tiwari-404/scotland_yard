@@ -11,9 +11,6 @@
 #
 
 class Route < ActiveRecord::Base
-  belongs_to :source, :foreign_key => 'from_id', :class_name => City.name, dependent: :destroy 
-  belongs_to :destination, :foreign_key => 'to_id', :class_name => City.name, dependent: :destroy
-
   module Type
     TAXI = 0
     BUS = 1
@@ -21,4 +18,10 @@ class Route < ActiveRecord::Base
     TRAIN = 3
     BOAT = 4
   end
+  belongs_to :source, :foreign_key => 'from_id', :class_name => City.name, dependent: :destroy 
+  belongs_to :destination, :foreign_key => 'to_id', :class_name => City.name, dependent: :destroy
+
+  scope :involving, Proc.new {|city|
+    where("from_id = ? OR to_id = ?", city.id, city.id)
+  }
 end
