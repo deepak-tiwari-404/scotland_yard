@@ -46,3 +46,6 @@ end
 
 gem 'bootstrap-sass',       '3.2.0.0'
 gem 'rubyvor', path: File.join('vendor', 'gems')
+gem 'thin'
+gem 'redis'
+gem 'websocket-rails'
