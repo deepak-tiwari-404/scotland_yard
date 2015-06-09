@@ -15,5 +15,8 @@
 //= require turbolinks
 //= require bootstrap
 //= require_tree .
+//= require jquery.cookie.js
 //= require websocket_rails/main
+//= require users.js.erb
+
 

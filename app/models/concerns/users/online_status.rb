@@ -6,7 +6,7 @@ module Concerns
       HASH_KEY = 'online_users'
 
       included do
-        scope :online, find_all_by_id( $redis.hgetall(HASH_KEY).keys )
+        scope :online, -> { where(id: $redis.hgetall(HASH_KEY).keys ) }
       end
 
       def online?

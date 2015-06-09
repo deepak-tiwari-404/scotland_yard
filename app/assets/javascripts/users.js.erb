@@ -88,7 +88,7 @@ var UserMonitor = (function() {
 
 }());
 $(document).on('ready', function() {
-    var globalDispatcher = new WebSocketRails('http://localhost:3000/websocket');
+    var globalDispatcher = new WebSocketRails('localhost:3000/websocket');
     UserChannel.init(globalDispatcher);
     UserMonitor.init(globalDispatcher);
 });
