@@ -5,6 +5,7 @@ class GamesController < ApplicationController
   def create
     game = Game.new
     game.board ||= Board.first
+    game.save!
   end
 
   def index
