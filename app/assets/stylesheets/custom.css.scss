@@ -201,8 +201,68 @@ input {
 }
 .canvas-board{
   max-width: 800px;
-  max-height: 500px;
+  max-height: 600px;
   overflow: scroll;
+}
+
+.no-padding{
+  padding: 0px !important;
+}
+
+.no-padding-left{
+  padding-left: 0px !important;
+}
+
+.no-padding-right{
+  padding-right: 0px !important;
+}
+
+.no-padding-top{
+  padding-top: 0px !important;
+}
+.no-padding-bottom{
+  padding-bottom: 0px !important;
+}
+
+.no-margin{
+  margin: 0px !important;
+}
+
+.no-margin-left{
+  margin-left: 0px !important;
+}
+
+.no-margin-right{
+  margin-right: 0px !important;
+}
+
+.no-margin-top{
+  margin-top: 0px !important;
+}
+
+.no-margin-bottom{
+  margin-bottom: 0px !important;
+}
+
+.online-users-box{
+  height: 100%;
+  width: 100%;
+  background-color: white;
+  overflow-y: auto;
+  .online {
+    color: green;
+  }
+
+  .offline {
+    color: #808080;
+  }
+  ul {
+    list-style: none;
+    font-size: 0.9em;
+    li {
+      text-align: left !important;
+    }
+  }
 }
 
 .has-above{
@@ -219,4 +279,11 @@ input {
 
 .has-above-3{
   padding-top: 5px;
+}
+
+.bg-white{
+  background-color: #FFFFFF;
+}
+.btn {
+  width:100%;
 }

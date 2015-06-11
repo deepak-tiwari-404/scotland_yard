@@ -27,5 +27,17 @@ Things you may want to cover:
 Please feel free to use a different markup language if you do not plan to run
 <tt>rake doc:app</tt>.
 
-* For rubyvor
-rake compile
+Prerquisites to start the application:
+
+1. Make sure Redis up and running
+   http://redis.io/topics/quickstart
+
+2. bundle install
+
+3. For rubyvor proper installation - which has native extension
+   cd vendor/gems/rubyvor
+   rake compile
+
+4. rails s
+
+5. Access the app from localhost:3000

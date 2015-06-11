@@ -1,4 +1,6 @@
 class SessionsController < ApplicationController
+  skip_before_filter :login_required, only: [:new, :create]
+
   def new
   end
 
@@ -7,7 +9,7 @@ class SessionsController < ApplicationController
     if user && user.authenticate(params[:session][:password])
       log_in user
       params[:session][:remember_me] == '1' ? remember(user) : forget(user)
-      redirect_to user
+      redirect_to root_path
     else
       flash.now[:danger] = 'Invalid email/password combination'
       render 'new'

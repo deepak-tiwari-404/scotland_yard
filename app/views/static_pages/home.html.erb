@@ -1,19 +1,21 @@
-<div class="canvas-board">
-  <canvas width="1016" height="809" id="game-canvas"></canvas>
+<div class="well canvas-board">
+  <canvas width="800" height="600" id="game-canvas"></canvas>
 </div>
 <%= content_for_sidebar do %>
-  <div class="center well">
-    <%= link_to "Start Game", "#", class: "btn btn-lg btn-primary" %>
+  <div class="center well square-well clearfix no-padding no-margin">
+    <%= link_to "Start Game", "#", class: "btn btn-primary" %>
   </div>
-  <div class="center well">
-    <%= link_to "Player Details", "#", class: "btn btn-lg btn-info" %>
+  <div class="center well square-wellclearfix no-padding no-margin">
+    <%= link_to "Player Details", "#", class: "btn btn-info" %>
   </div>
-  <div class="center well">
-    <%= link_to "Previous Moves", "#", class: "btn btn-lg btn-info" %>
+  <div class="center well square-well clearfix no-padding">
+    <%= link_to "Previous Moves", "#", class: "btn btn-info" %>
   </div>
+  <%= render :partial => '/shared/online_users_info' %>
 <% end %>
 <%= javascript_tag do %>
   $(document).ready(function(){
-    GameEngine.initialize();
+    GameEngine.initialize('<%= @vertices.to_json.html_safe %>', '<%= @triangles.to_json.html_safe %>');
   });
 <% end %>
+

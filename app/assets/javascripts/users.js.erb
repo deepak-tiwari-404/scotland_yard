@@ -50,38 +50,32 @@ var UserMonitor = (function() {
         channel = dispatcher.subscribe('online_users');
         channel.bind('seen', userOnline);
         channel.bind('left', userOffline);
-        setOnlineUserCount();
-    }
-
-    function setOnlineUserCount() {
-       $userCountContainer = $('#online-user-count');
-       if($userCountContainer.length) {
-           onlineUsers = parseInt($userCountContainer.html(), 10);
-       }
+        $userCountContainer = $('#online-user-count');
+        $user = $('#online-users-list')
     }
 
     function userOnline(user) {
-        var $onlineUser = $('.user-online[data-user-id="'+user.id+'"]');
-        $onlineUser.addClass('online');
-        $onlineUser.removeClass('offline');
-        $onlineUser.html('online');
-        if($userCountContainer.length) {
-            updateOnlineUserCount(++onlineUsers);
+        var $onlineUser = $('.user-online[data-user-id="'+user.id+'"] span');
+        if($onlineUser.length == 0){
+          $('#online-users-list').append("<li class='user-online' data-user-id="+user.id+">"+user.email+" <span class='online'>●</span></li>");
+        }else{
+          $onlineUser.addClass('online');
+          $onlineUser.removeClass('offline');
         }
+        updateOnlineUserCount();
     }
 
     function userOffline(user) {
-        var $offlineUser = $('.user-online[data-user-id="'+user.id+'"]');
+        var $offlineUser = $('.user-online[data-user-id="'+user.id+'"] span');
         $offlineUser.removeClass('online');
         $offlineUser.addClass('offline');
-        $offlineUser.html('offline');
-        if($userCountContainer.length) {
-            updateOnlineUserCount(--onlineUsers);
-        }
+        updateOnlineUserCount();
     }
 
-    function updateOnlineUserCount(count) {
-        $userCountContainer.html(count);
+    function updateOnlineUserCount() {
+        if($userCountContainer.length){
+          $userCountContainer.html($('#online-users-list .online').length);
+        }
     }
 
     return { init: init };

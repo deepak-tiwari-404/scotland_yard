@@ -41,4 +41,19 @@ module SessionsHelper
     cookies.delete(:user_id)
     cookies.delete(:remember_token)
   end
+
+  def login_required
+    current_user || access_denied
+  end
+
+  def access_denied
+    respond_to do |format|
+      format.html do
+        redirect_to login_path
+      end
+      format.js do
+        render :nothing => true, :status => :unauthorized
+      end
+    end
+  end
 end

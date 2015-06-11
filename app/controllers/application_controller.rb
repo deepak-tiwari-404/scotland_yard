@@ -6,6 +6,8 @@ class ApplicationController < ActionController::Base
   
   USER_CHANNEL_KEY = 'user_channel_key'
 
+  before_filter :login_required
+
   def after_sign_in_path_for(resource)
     if resource.is_a? User
       set_user_channel_cookie
@@ -18,6 +20,11 @@ class ApplicationController < ActionController::Base
       clear_user_channel_cookie
     end
     super
+  end
+
+  def set_online_users_info
+    @online_users = User.online
+    @online_user_count = User.online_count
   end
 
   private

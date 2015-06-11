@@ -1,9 +1,8 @@
 class StaticPagesController < ApplicationController
-  def contact
-  end
+  before_filter :set_online_users_info
 
-  def help
-  	points = RubyVor::Point.generate_random_points(100, 1000, 800)
+  def home
+  	points = RubyVor::Point.generate_random_points(50, 800, 600, 50, 50)
   	comp = RubyVor::VDDT::Computation.from_points(points)
   	@vertices = points.map{|p| [p.x, p.y]}
   	@triangles = comp.delaunay_triangulation_raw

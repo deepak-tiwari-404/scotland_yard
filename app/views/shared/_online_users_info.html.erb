@@ -1,0 +1,16 @@
+<div class="well bg-white online-users-box">
+  <div class="center no-margin no-padding">
+    <b><span id='online-user-count'>
+      <%= @online_user_count  %>
+    </span> users currently online</b>
+  </div>
+  <hr class="no-padding">
+  <ul id="online-users-list">
+    <% @online_users.each do |user| %>
+       <li class="user-online" data-user-id="<%= user.id %>">
+          <%= user.email %> <span class="<%= user.online? ? "online" : "offline" %>">●</span>
+       </li>
+    <% end %>
+  </ul>
+</div>
+
