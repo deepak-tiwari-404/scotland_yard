@@ -44,7 +44,7 @@ group :development, :test do
   gem 'annotate', '~> 2.6.6'
 end
 
-gem 'bootstrap-sass',       '3.2.0.0'
+gem 'bootstrap-sass'
 gem 'rubyvor', path: File.join('vendor', 'gems')
 gem 'thin'
 gem 'redis'
